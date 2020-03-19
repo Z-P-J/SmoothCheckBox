@@ -18,6 +18,14 @@
 ## Sample Usage 使用
 
 
+```gradle
+// 已上传至bintray
+dependencies {
+  implementation 'com.zpj.widget:SmoothCheckBox:1.0.0'
+}
+```
+
+
 ```java
  
     setChecked(boolean checked);                   // 默认不带动画，若需要动画 调用重载方法
@@ -40,12 +48,6 @@
         });
     }    
 ```
-
-## About me
-
-An android developer in Beijing.
-
-Welcome to [offer me](mailto:andyxialm@gmail.com). :smiley:
 
 ## License
 

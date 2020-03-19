@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import cn.refactor.library.SmoothCheckBox;
+import com.zpj.widget.checkbox.SmoothCheckBox;
 
 public class SampleListViewActivity extends AppCompatActivity {
     private ArrayList<Bean> mList = new ArrayList<>();

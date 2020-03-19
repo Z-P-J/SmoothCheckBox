@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import cn.refactor.library.SmoothCheckBox;
+import com.zpj.widget.checkbox.SmoothCheckBox;
 
 public class SampleActivity extends AppCompatActivity {
     @Override

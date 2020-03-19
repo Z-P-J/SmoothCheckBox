@@ -13,7 +13,7 @@
     tools:context="cn.refactor.smoothcheckbox.MainActivity">
 
 
-    <cn.refactor.library.SmoothCheckBox
+    <com.zpj.widget.checkbox.SmoothCheckBox
         android:id="@+id/scb"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -21,20 +21,20 @@
         android:paddingTop="10dp"
         app:color_checked="@color/colorAccent"/>
 
-    <cn.refactor.library.SmoothCheckBox
+    <com.zpj.widget.checkbox.SmoothCheckBox
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
         app:color_checked="#447eeb" />
 
-    <cn.refactor.library.SmoothCheckBox
+    <com.zpj.widget.checkbox.SmoothCheckBox
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
         android:paddingBottom="10dp"
         app:color_checked="#149A45" />
 
-    <cn.refactor.library.SmoothCheckBox
+    <com.zpj.widget.checkbox.SmoothCheckBox
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="5dp" />
