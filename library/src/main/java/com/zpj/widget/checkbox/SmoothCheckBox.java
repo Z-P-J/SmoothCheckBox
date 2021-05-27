@@ -17,7 +17,6 @@
 package com.zpj.widget.checkbox;
 
 import android.animation.ValueAnimator;
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -25,15 +24,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Point;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Checkable;
-
-import cn.zpj.widget.checkbox.R;
 
 /**
  * Author : andy
@@ -42,7 +38,6 @@ import cn.zpj.widget.checkbox.R;
  * Github : github.com/andyxialm
  * Description : A custom CheckBox with animation for Android
  */
-
 public class SmoothCheckBox extends View implements Checkable {
     private static final String KEY_INSTANCE_STATE = "InstanceState";
 
@@ -79,12 +74,6 @@ public class SmoothCheckBox extends View implements Checkable {
 
     public SmoothCheckBox(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SmoothCheckBox(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
 
@@ -270,8 +259,8 @@ public class SmoothCheckBox extends View implements Checkable {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         mWidth = getMeasuredWidth();
         mStrokeWidth = (mStrokeWidth == 0 ? getMeasuredWidth() / 10 : mStrokeWidth);
-        mStrokeWidth = mStrokeWidth > getMeasuredWidth() / 5 ? getMeasuredWidth() / 5 : mStrokeWidth;
-        mStrokeWidth = (mStrokeWidth < 3) ? 3 : mStrokeWidth;
+        mStrokeWidth = Math.min(mStrokeWidth, getMeasuredWidth() / 5);
+        mStrokeWidth = Math.max(mStrokeWidth, 3);
         mCenterPoint.x = mWidth / 2;
         mCenterPoint.y = getMeasuredHeight() / 2;
 
@@ -346,7 +335,7 @@ public class SmoothCheckBox extends View implements Checkable {
                 mTickPath.lineTo(stopX, stopY);
                 canvas.drawPath(mTickPath, mTickPaint);
 
-                float step = (mWidth / 20f) < 3f ? 3f : (mWidth / 20f);
+                float step = Math.max((mWidth / 20f), 3f);
                 mDrewDistance += step;
             } else {
                 mTickPath.reset();
@@ -361,7 +350,7 @@ public class SmoothCheckBox extends View implements Checkable {
             postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    postInvalidate();
+                    invalidate();
                 }
             }, 10);
         }
@@ -376,7 +365,7 @@ public class SmoothCheckBox extends View implements Checkable {
             public void onAnimationUpdate(ValueAnimator animation) {
                 mScaleVal = (float) animation.getAnimatedValue();
                 mFloorColor = getGradientColor(mUnCheckedColor, mCheckedColor, 1 - mScaleVal);
-                postInvalidate();
+                invalidate();
             }
         });
         animator.start();
@@ -388,7 +377,7 @@ public class SmoothCheckBox extends View implements Checkable {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mFloorScale = (float) animation.getAnimatedValue();
-                postInvalidate();
+                invalidate();
             }
         });
         floorAnimator.start();
@@ -405,7 +394,7 @@ public class SmoothCheckBox extends View implements Checkable {
             public void onAnimationUpdate(ValueAnimator animation) {
                 mScaleVal = (float) animation.getAnimatedValue();
                 mFloorColor = getGradientColor(mCheckedColor, mFloorUnCheckedColor, mScaleVal);
-                postInvalidate();
+                invalidate();
             }
         });
         animator.start();
@@ -417,7 +406,7 @@ public class SmoothCheckBox extends View implements Checkable {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 mFloorScale = (float) animation.getAnimatedValue();
-                postInvalidate();
+                invalidate();
             }
         });
         floorAnimator.start();
@@ -428,7 +417,7 @@ public class SmoothCheckBox extends View implements Checkable {
             @Override
             public void run() {
                 mTickDrawing = true;
-                postInvalidate();
+                invalidate();
             }
         }, mAnimDuration);
     }
